@@ -1,42 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Stage index{% endblock %}
-
+{% block title %}Stage Index{% endblock %}
+{% block tilteH1 %}
+    <h1 class="text-center">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Gestion des Stages</a>
+    </h1>
+{% endblock %}
 {% block body %}
-    {% block tilteH1 %}
-        <h1 class="text-center">
-            <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Stage index</a>
-        </h1>
-    {% endblock %} 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Libelle</th>
-                <th>DateDebut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stage in stages %}
-            <tr>
-                <td>{{ stage.id }}</td>
-                <td>{{ stage.code }}</td>
-                <td>{{ stage.libelle }}</td>
-                <td>{{ stage.dateDebut ? stage.dateDebut|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_stage_show', {'id': stage.id}) }}">show</a>
-                    <a href="{{ path('app_stage_edit', {'id': stage.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_stage_new') }}">Create new</a>
+    <div class="text-end" >
+        <a href="{{ path('app_stage_new') }}" class="btn btn-success">Ajouter un nouveau stage </a>
+    </div>
+    <div class="container py-5">
+        <div class="row">
+            {% for stage in stages %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg border-light">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ stage.libelle }}</h5>
+                            <p class="card-text"><strong>Code:</strong> {{ stage.code }}</p>
+                            <p class="card-text"><strong>Date de début:</strong> {{ stage.dateDebut ? stage.dateDebut|date('d/m/Y') : 'Non définie' }}</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ path('app_stage_show', {'id': stage.id}) }}" class="btn btn-info btn-sm">
+                                    <i class="bi bi-eye"></i> Voir
+                                </a>
+                                <a href="{{ path('app_stage_edit', {'id': stage.id}) }}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i> Modifier
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-warning text-center" role="alert">
+                        Aucun stage trouvé.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

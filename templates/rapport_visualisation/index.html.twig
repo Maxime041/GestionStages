@@ -1,0 +1,33 @@
+{# templates/gestion/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion - Institution{% endblock %}
+{% block tilteH1 %}
+    <h1 class="text-center">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Rapports et Visualisation</a>
+    </h1>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stagiaire et Inscription</h5>
+                    <p class="card-text">Visualisez les stagiaires et leurs inscriptions.</p>
+                    <a href="{{ path('app_rapport_visualisation_stage_inscription') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Stage et Professeur</h5>
+                    <p class="card-text">Visualisez les stages supervisés par les professeurs.</p>
+                    <a href="{{ path('app_rapport_visualisation_stage_professeur') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

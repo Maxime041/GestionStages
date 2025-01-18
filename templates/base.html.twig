@@ -16,18 +16,14 @@
                 <h1 class="text-center">
                     <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Institution</a>
                 </h1>
-           {% endblock %} 
+           {% endblock %}
             <br>
             <nav class="d-flex justify-content-between align-items-center mt-3">
                 <div>
                     {% if app.user %}
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('app_stage_index') }}" class="btn btn-outline-light">Gestion Stage</a>
-                            <a href="{{ path('app_stagiaire_index') }}" class="btn btn-outline-light">Gestion Stagiaire</a>
-                            <a href="{{ path('app_matiere_index') }}" class="btn btn-outline-light">Gestion Matiere</a>
-                            <a href="{{ path('app_professeur_index') }}" class="btn btn-outline-light">Gestion Professeur</a>
-                            <a href="{{ path('app_rapport_visualisation_stage_inscription') }}" class="btn btn-outline-light">Stagiaire et Inscription</a>
-                            <a href="{{ path('app_rapport_visualisation_stage_professeur') }}" class="btn btn-outline-light">Stage et Professeur</a>
+                            <a href="{{ path('app_gestion') }}" class="btn btn-outline-light">Gestion</a>
+                            <a href="{{ path('app_rapport') }}" class="btn btn-outline-light">Rapports et Visualisation</a>
                         {% endif %}
                     {% else %}
                         <a href="{{ path('app_login') }}" class="btn btn-outline-light">Connexion</a>
@@ -35,8 +31,10 @@
                     {% endif %}
                 </div>
                 {% if app.user %}
-                    <a href="{{ path('app_logout') }}" class="btn btn-success" style="float: right;" >Mon Compte</a>
-                    <a href="{{ path('app_logout') }}" class="btn btn-danger" style="float: right;" >Déconnexion</a>
+                    <div>
+                        <a href="{{ path('app_gestion') }}" class="btn btn-success me-2">Mon Compte</a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+                    </div>
                 {% endif %}
             </nav>
         </div>

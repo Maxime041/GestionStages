@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Professeur;
+use App\Entity\Stagiaire;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
+use App\Service\GenerateCode;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -22,9 +25,33 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
+
+            $userChoice = $form->get('role')->getData();
+
+            if ($userChoice == "professeur") 
+            {
+                $professeur = new Professeur();
+                $user->setRoles(["ROLE_PROFESSEUR"]);
+                $professeur->setMatricule(GenerateCode::matricule());
+                $professeur->setNom($form->get('nom')->getData());
+                $professeur->setPrenom($form->get('prenom')->getData());
+                $user->setProfesseur($professeur);
+                $entityManager->persist($professeur);
+            }
+            else
+            {
+                $stagiaire = new Stagiaire();
+                $user->setRoles(["ROLE_STAGIAIRE"]);
+                $stagiaire->setNom($form->get('nom')->getData());
+                $stagiaire->setPrenom($form->get('prenom')->getData());
+                $user->setStagiaire($stagiaire);
+                $entityManager->persist($stagiaire);
+            }
+            
 
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));

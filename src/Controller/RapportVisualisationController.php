@@ -10,6 +10,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RapportVisualisationController extends AbstractController
 {
+    #[Route('admin/rapport-visualisation', name: 'app_rapport')]
+    public function index(): Response
+    {
+        return $this->render('rapport_visualisation/index.html.twig');
+    }
+
     #[Route('admin/rapport-visualisation/stage-inscritpion', name: 'app_rapport_visualisation_stage_inscription',  methods: ['GET'])]
     public function rapportStageInscription(StagiaireRepository $stagiaireRepository): Response
     {

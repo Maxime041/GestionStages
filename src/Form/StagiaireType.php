@@ -15,6 +15,7 @@ class StagiaireType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('prenom')
             ->add('adresse')
             ->add('code')
             ->add('ville')

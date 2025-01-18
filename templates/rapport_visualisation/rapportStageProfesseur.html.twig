@@ -6,13 +6,12 @@
     <div class="container mt-5">
         {% block tilteH1 %}
             <h1 class="text-center">
-                <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Rapport des Stagiaires et leurs Inscriptions</a>
+                <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Rapport des Stage et leurs Professeur</a>
             </h1>
         {% endblock %} 
         <table class="table table-hover table-bordered">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th scope="col" class="text-center">#</th>
                     <th scope="col">Professeur</th>
                     <th scope="col">Matières</th>
                     <th scope="col">Stages</th>
@@ -21,7 +20,6 @@
             <tbody>
             {% for idx, professeur in professeurs %}
                 <tr>
-                    <td class="text-center">{{ idx }}</td>
                     <td class="text-center">{{ professeur.professeur.nom }}</td>
                     <td>
                         <ul class="list-unstyled mb-0">

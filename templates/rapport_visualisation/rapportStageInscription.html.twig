@@ -12,7 +12,6 @@
         <table class="table table-hover table-bordered">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th scope="col" class="text-center">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Stages</th>
                     <th scope="col" class="text-center">Date d'inscription</th>
@@ -21,7 +20,6 @@
             <tbody>
             {% for stagiaire in stagiaires %}
                 <tr style="background-color: {% if loop.index is even %}#f8f9fa{% else %}#ffffff{% endif %};">
-                    <td class="text-center">{{ stagiaire.id }}</td>
                     <td>{{ stagiaire.nom }}</td>
                     <td>
                         {% if stagiaire.stages is not empty %}

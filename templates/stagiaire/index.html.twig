@@ -1,53 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Stagiaire index{% endblock %}
-
+{% block title %}Stagiaire Index{% endblock %}
+{% block tilteH1 %}
+    <h1 class="text-center">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Gestion des Stagiaires</a>
+    </h1>
+{% endblock %}
 {% block body %}
-    {% block tilteH1 %}
-        <h1 class="text-center">
-            <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Stagiaire index</a>
-        </h1>
-    {% endblock %} 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Code</th>
-                <th>Ville</th>
-                <th>DateInscription</th>
-                <th>Stages</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stagiaire in stagiaires %}
-            <tr>
-                <td>{{ stagiaire.id }}</td>
-                <td>{{ stagiaire.nom }}</td>
-                <td>{{ stagiaire.adresse }}</td>
-                <td>{{ stagiaire.code }}</td>
-                <td>{{ stagiaire.ville }}</td>
-                <td>{{ stagiaire.dateInscription ? stagiaire.dateInscription|date('Y-m-d') : '' }}</td>
-                <td>
-                {% for idx, st in stagiaire.stages %}
-                    {{ st.libelle }}
-                    {% if stagiaire.stages | length > idx + 1 %} - {% endif %}
-                {% endfor %}
-            </td>  
-                <td>
-                    <a href="{{ path('app_stagiaire_show', {'id': stagiaire.id}) }}">show</a>
-                    <a href="{{ path('app_stagiaire_edit', {'id': stagiaire.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="d-flex justify-content-entd ">
+            <a href="{{ path('app_stagiaire_new') }}" class="btn btn-success">Ajouter un nouveau stagiaire</a>
+        </div>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Adresse</th>
+                        <th>Code</th>
+                        <th>Ville</th>
+                        <th>Date Inscription</th>
+                        <th>Stages</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stagiaire in stagiaires %}
+                        <tr>
+                            <td>{{ stagiaire.id }}</td>
+                            <td>{{ stagiaire.nom }}</td>
+                            <td>{{ stagiaire.prenom }}</td>
+                            <td>{{ stagiaire.adresse }}</td>
+                            <td>{{ stagiaire.code }}</td>
+                            <td>{{ stagiaire.ville }}</td>
+                            <td>{{ stagiaire.dateInscription ? stagiaire.dateInscription|date('d/m/Y') : 'Non définie' }}</td>
+                            <td>
+                                {% for idx, st in stagiaire.stages %}
+                                    <span>{{ st.libelle }}</span>
+                                    {% if stagiaire.stages | length > idx + 1 %}  {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <a href="{{ path('app_stagiaire_show', {'id': stagiaire.id}) }}" class="btn btn-info btn-sm"> Voir </a>
+                                <a href="{{ path('app_stagiaire_edit', {'id': stagiaire.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                                <a href="{{ path('app_stagiaire_delete', {'id': stagiaire.id}) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire ?')">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8" class="text-center text-muted">Aucun stagiaire trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('app_stagiaire_new') }}">Create new</a>
+
+    </div>
 {% endblock %}

@@ -1,0 +1,53 @@
+{# templates/gestion/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion - Institution{% endblock %}
+{% block tilteH1 %}
+    <h1 class="text-center">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Gestion des Sections</a>
+    </h1>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion Stage</h5>
+                    <p class="card-text">Gérez les stages de l'institution.</p>
+                    <a href="{{ path('app_stage_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion Stagiaire</h5>
+                    <p class="card-text">Gérez les stagiaires inscrits.</p>
+                    <a href="{{ path('app_stagiaire_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion Matière</h5>
+                    <p class="card-text">Gérez les matières enseignées.</p>
+                    <a href="{{ path('app_matiere_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion Professeur</h5>
+                    <p class="card-text">Gérez les professeurs de l'institution.</p>
+                    <a href="{{ path('app_professeur_index') }}" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

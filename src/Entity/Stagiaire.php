@@ -19,13 +19,13 @@ class Stagiaire
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $code = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $ville = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -36,6 +36,9 @@ class Stagiaire
      */
     #[ORM\ManyToMany(targetEntity: Stage::class, mappedBy: 'stagiaire')]
     private Collection $stages;
+
+    #[ORM\Column(length: 50)]
+    private ?string $prenom = null;
 
     public function __construct()
     {
@@ -131,6 +134,18 @@ class Stagiaire
         if ($this->stages->removeElement($stage)) {
             $stage->removeStagiaire($this);
         }
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }
