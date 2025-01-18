@@ -40,6 +40,7 @@ class Stagiaire
     public function __construct()
     {
         $this->stages = new ArrayCollection();
+        $this->dateInscription = new \DateTime();
     }
 
     public function getId(): ?int

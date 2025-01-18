@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stagiaire{% endblock %}
+
+{% block body %}
+    <h1>Stagiaire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stagiaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ stagiaire.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ stagiaire.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ stagiaire.code }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ stagiaire.ville }}</td>
+            </tr>
+            <tr>
+                <th>DateInscription</th>
+                <td>{{ stagiaire.dateInscription ? stagiaire.dateInscription|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stagiaire_index') }}">back to list</a>
+
+    <a href="{{ path('app_stagiaire_edit', {'id': stagiaire.id}) }}">edit</a>
+
+    {{ include('stagiaire/_delete_form.html.twig') }}
+{% endblock %}

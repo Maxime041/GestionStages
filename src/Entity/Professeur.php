@@ -15,7 +15,7 @@ class Professeur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, unique: true)]
     private ?string $matricule = null;
 
     #[ORM\Column(length: 50)]

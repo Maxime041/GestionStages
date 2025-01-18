@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Stagiaire{% endblock %}
+
+{% block body %}
+    <h1>Create new Stagiaire</h1>
+
+    {{ include('stagiaire/_form.html.twig') }}
+
+    <a href="{{ path('app_stagiaire_index') }}">back to list</a>
+{% endblock %}
