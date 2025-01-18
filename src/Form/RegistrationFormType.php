@@ -25,19 +25,19 @@ class RegistrationFormType extends AbstractType
                     'Professeur' => 'professeur',
                     'Stagiaire' => 'stagiaire',
                 ],
-                'multiple' => false, // Un seul choix possible
+                'multiple' => false,
             ])
             ->add('nom', TextType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter your last name',
+                        'message' => 'Veuillez entrer votre nom de famille.',
                     ]),
                     new Length([
                         'min' => 2,
                         'max' => 20,
-                        'minMessage' => 'Your last name should be at least {{ limit }} characters',
-                        'maxMessage' => 'Your last name should not exceed {{ limit }} characters',
+                        'minMessage' => 'Votre nom de famille doit comporter au moins 2 caractères.',
+                        'maxMessage' => 'Votre nom de famille ne doit pas dépasser 20 caractères.',
                     ]),
                 ],
             ])
@@ -46,13 +46,13 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter your first name',
+                        'message' => 'Veuillez entrer votre prénom.',
                     ]),
                     new Length([
                         'min' => 2,
                         'max' => 20,
-                        'minMessage' => 'Your first name should be at least {{ limit }} characters',
-                        'maxMessage' => 'Your first name should not exceed {{ limit }} characters',
+                        'minMessage' => 'Votre prénom doit comporter au moins 2 caractères.',
+                        'maxMessage' => 'Votre prénom ne doit pas dépasser 20 caractères.',
                     ]),
                 ],
             ])
@@ -61,23 +61,20 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe.',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
+                        'minMessage' => 'Votre mot de passe doit comporter au moins 6 caractères.',
                         'max' => 4096,
                     ]),
                 ],

@@ -17,11 +17,11 @@ class MatiereType extends AbstractType
         $builder
             ->add('code')
             ->add('libelle')
-            ->add('stages', EntityType::class, [
+           /* ->add('stages', EntityType::class, [
                 'class' => Stage::class,
                 'choice_label' => 'libelle',
                 'multiple' => true,
-            ])
+            ])*/
             ->add('professeur', EntityType::class, [
                 'class' => Professeur::class,
                 'choice_label' => 'nom',

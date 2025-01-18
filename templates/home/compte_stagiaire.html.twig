@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte{% endblock %}
+{% block tilteH1 %}
+    <h1 class="text-center">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">Mon Compte - Stagiaire</a>
+    </h1>
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h2>Mes Stages</h2>
+                <div class="row">
+                    {% for stage in stages %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ stage.libelle }} ({{ stage.code }})</h5>
+                                    <p class="card-text">Début : {{ stage.dateDebut|date('d/m/Y') }}</p>
+                                    
+                                    <h6 class="mt-3">Matières associées :</h6>
+                                    <ul class="list-group">
+                                        {% for matiere in stage.matiere %}
+                                            <li class="list-group-item">{{ matiere.libelle }} ({{ matiere.code }})</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-12">
+                            <div class="alert alert-warning" role="alert">
+                                Aucun stage trouvé.
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
